@@ -1,25 +1,28 @@
 package main
 
-import "log"
+import (
+	"log"
+	"time"
+)
 
-/*
-* & es un operador de dirección de memoria, lo que significa que devuelve
-* la dirección de memoria de una variable,
-* mientras que * es un operador de desreferenciación, lo que significa
-* que devuelve el valor almacenado en una
-* dirección de memoria.
- */
-func main(){
-	var myString string
-	myString = "Green"
-	log.Println("myString is set to", myString)
-	changeUsingPointer(&myString)
-	log.Println("after func call myString is set to", myString)
+
+
+type User struct {
+	 firstName string
+ 	lastName string
+ 	phoneNumber string
+ 	age int
+ 	birthDate time.Time
 }
 
 
-func changeUsingPointer(s *string) {
-	log.Println("s is set to", s)
-	newValue := "Red"
-	*s = newValue
+func main(){
+	user := User {
+		firstName: "Johan",
+		lastName: "Navarro",
+		age: 31,
+		phoneNumber: "+573166996469",
+	}
+
+	log.Println(user.firstName, user.lastName, "Birthdate:", user.birthDate)
 }
