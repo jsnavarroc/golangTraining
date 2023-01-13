@@ -1,28 +1,30 @@
 package main
 
-import (
-	"log"
-	"time"
-)
+import "log"
 
-
-
-type User struct {
-	 firstName string
- 	lastName string
- 	phoneNumber string
- 	age int
- 	birthDate time.Time
+type myStruct struct {
+	FirstName string
 }
 
+/*
+* La función printFirstName se asocia a la estructura myStruct mediante 
+* la adición de una etiqueta de receptor de tipo *myStruct a la declaración 
+* de la función. Esto le dice al compilador que la función printFirstName 
+* se asocia a la estructura myStruct. Esto significa que podemos llamar 
+* a la función printFirstName en cualquier instancia de myStruct y que la 
+* función tendrá acceso a los campos de la instancia.
+*/
+func (m *myStruct) printFirstName() string {
+	return m.FirstName
+}
 
 func main(){
-	user := User {
-		firstName: "Johan",
-		lastName: "Navarro",
-		age: 31,
-		phoneNumber: "+573166996469",
-	}
+	var myVar myStruct
+	myVar.FirstName = "Johan"
 
-	log.Println(user.firstName, user.lastName, "Birthdate:", user.birthDate)
+	myVar2 := myStruct {
+		FirstName: "Caro",
+	}
+	log.Println("myVar is set to", myVar.printFirstName())
+	log.Println("myVar2 is set to", myVar2.printFirstName())
 }
