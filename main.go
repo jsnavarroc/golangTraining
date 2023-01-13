@@ -1,52 +1,52 @@
 package main
 
-import "log"
+import "fmt"
 
+type Animal interface {
+	Says() string 
+	NumberOfLegs() int
+}
+
+type Dog struct {
+	Name string
+	Breed string
+}
+
+type Gorilla struct {
+	Name string
+	Color string
+	NumberOfTheeth int
+}
 
 func main(){
-	for i := 0; i <=3; i++ {
-		log.Println(i)
+	dog := Dog {
+		Name: "Samson",
+		Breed: "German Shephered",
 	}
-	animals := []string {"dog", "fish", "horse", "cow", "cat"}
-	for _,animal := range animals {
-		log.Println(animal)
-	}
+	PrintAnimal(&dog)
 
-	animals2 := make(map[string]string)
-	animals2["dog"] = "Fido"
-	animals2["cat"] = "Fluffy"
-	for animalType, animal:=range animals2 {
-		log.Println(animalType, animal)
+	gorilla := Gorilla {
+		Name: "Jock",
+		Color: "grey",
+		NumberOfTheeth: 38,
 	}
 
-	/*
-	* Cuando se recorre un string o se imprime un string en go
-	* se imprime con el unicode del caracter al que corresponde
-	* por ejeplo para O sería 79, si lo que queremos es que muestre 
-	* la letra se tiene que utilizar la funcion rune que recupera
-	* el caracter al que pertence el unicode  string(rune(l))
-	*/
-	var firstLine = "Once upon a midnight dreary"
-	
-	for i, l:=range firstLine {
-		log.Println(i,":",  string(rune(l)))
-	}
+	PrintAnimal(&gorilla)
+}
 
+func PrintAnimal (a Animal) {
+	fmt.Println("This animal says", a.Says(),"and has", a.NumberOfLegs(), "legs")
+}
 
-	type User struct {
-		FirstName string 
-		LastName string
-		Email string
-		Age int
-	}
-
-	var users []User 
-	users = append(users, User{"John", "Smith", "john@smith.com", 30})
-	users = append(users, User{"Johan", "Navarro", "johan@navarro.com", 31})
-	users = append(users, User{"Caro", "Anduquia", "caro@anduquia.com", 28})
-	for _, l:= range users {
-		log.Println(l.FirstName, l.LastName, l.Email, l.Age)
-	}
-
-	
+func (d *Dog) Says() string	{
+	return "Woof"
+}
+func (d *Dog) NumberOfLegs() int	{
+	return 4
+}
+func (d *Gorilla) Says() string	{
+	return "Ugh"
+}
+func (d *Gorilla) NumberOfLegs() int	{
+	return 2
 }
