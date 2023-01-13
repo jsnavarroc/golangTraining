@@ -28,3 +28,13 @@ func main(){
 	log.Println("myVar is set to", myVar.printFirstName())
 	log.Println("myVar2 is set to", myVar2.printFirstName())
 }
+
+/* 
+* Este concepto de asociación de funciones a estructuras se puede 
+* aplicar en muchos casos prácticos. Por ejemplo, podríamos usarlo 
+* para crear una estructura que representa una tarjeta de crédito, 
+* con campos como el nombre del titular, el número de tarjeta, etc. Luego, 
+* podríamos asociar una función a esta estructura que verifique si el número de 
+* tarjeta proporcionado es válido. De esta manera, podemos asegurarnos de que los 
+* usuarios estén ingresando información correcta y segura.
+*/
