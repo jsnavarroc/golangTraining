@@ -2,39 +2,49 @@ package main
 
 import "log"
 
-type myStruct struct {
-	FirstName string
-}
 
-/*
-* La función printFirstName se asocia a la estructura myStruct mediante 
-* la adición de una etiqueta de receptor de tipo *myStruct a la declaración 
-* de la función. Esto le dice al compilador que la función printFirstName 
-* se asocia a la estructura myStruct. Esto significa que podemos llamar 
-* a la función printFirstName en cualquier instancia de myStruct y que la 
-* función tendrá acceso a los campos de la instancia.
-*/
-func (m *myStruct) printFirstName() string {
-	return m.FirstName
-}
 
 func main(){
-	var myVar myStruct
-	myVar.FirstName = "Johan"
-
-	myVar2 := myStruct {
-		FirstName: "Caro",
+	var isTrue bool
+	isTrue = false
+	if isTrue {
+		log.Println("isTrue is", isTrue)
+	} else {
+		log.Println("isTrue is", isTrue)
 	}
-	log.Println("myVar is set to", myVar.printFirstName())
-	log.Println("myVar2 is set to", myVar2.printFirstName())
-}
+	//---------------------------------------
+	cat := "cat"
+	if(cat == "cat") {
+		log.Println("Cat is cat")
+	} else {
+		log.Println("Cat is not cat")
+	}
+	//---------------------------------------
 
-/* 
-* Este concepto de asociación de funciones a estructuras se puede 
-* aplicar en muchos casos prácticos. Por ejemplo, podríamos usarlo 
-* para crear una estructura que representa una tarjeta de crédito, 
-* con campos como el nombre del titular, el número de tarjeta, etc. Luego, 
-* podríamos asociar una función a esta estructura que verifique si el número de 
-* tarjeta proporcionado es válido. De esta manera, podemos asegurarnos de que los 
-* usuarios estén ingresando información correcta y segura.
-*/
+	myNum := 100 
+	if myNum > 99 && !isTrue {
+		log.Println("myNum is generate than 99 and is True is set to true")
+	} else if myNum < 100 && isTrue {
+			
+			log.Println("1")
+	} else if myNum == 101 || isTrue {
+		log.Println("2")
+
+	} else if myNum > 1000 && isTrue == false {
+		log.Println("3")
+	}
+	//---------------------------------------
+
+	myVar := "cat"
+
+	switch myVar {
+		case "cat":
+			log.Println("cat is set to Cat")
+		case "dog":
+			log.Println("cat is set to Dog")
+		case "fish":
+			log.Println("cat is set to Fish")
+		default: 
+			log.Println("cat is somthing else")
+	}
+}
