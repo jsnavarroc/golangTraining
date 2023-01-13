@@ -3,48 +3,50 @@ package main
 import "log"
 
 
-
 func main(){
-	var isTrue bool
-	isTrue = false
-	if isTrue {
-		log.Println("isTrue is", isTrue)
-	} else {
-		log.Println("isTrue is", isTrue)
+	for i := 0; i <=3; i++ {
+		log.Println(i)
 	}
-	//---------------------------------------
-	cat := "cat"
-	if(cat == "cat") {
-		log.Println("Cat is cat")
-	} else {
-		log.Println("Cat is not cat")
+	animals := []string {"dog", "fish", "horse", "cow", "cat"}
+	for _,animal := range animals {
+		log.Println(animal)
 	}
-	//---------------------------------------
 
-	myNum := 100 
-	if myNum > 99 && !isTrue {
-		log.Println("myNum is generate than 99 and is True is set to true")
-	} else if myNum < 100 && isTrue {
-			
-			log.Println("1")
-	} else if myNum == 101 || isTrue {
-		log.Println("2")
-
-	} else if myNum > 1000 && isTrue == false {
-		log.Println("3")
+	animals2 := make(map[string]string)
+	animals2["dog"] = "Fido"
+	animals2["cat"] = "Fluffy"
+	for animalType, animal:=range animals2 {
+		log.Println(animalType, animal)
 	}
-	//---------------------------------------
 
-	myVar := "cat"
-
-	switch myVar {
-		case "cat":
-			log.Println("cat is set to Cat")
-		case "dog":
-			log.Println("cat is set to Dog")
-		case "fish":
-			log.Println("cat is set to Fish")
-		default: 
-			log.Println("cat is somthing else")
+	/*
+	* Cuando se recorre un string o se imprime un string en go
+	* se imprime con el unicode del caracter al que corresponde
+	* por ejeplo para O sería 79, si lo que queremos es que muestre 
+	* la letra se tiene que utilizar la funcion rune que recupera
+	* el caracter al que pertence el unicode  string(rune(l))
+	*/
+	var firstLine = "Once upon a midnight dreary"
+	
+	for i, l:=range firstLine {
+		log.Println(i,":",  string(rune(l)))
 	}
+
+
+	type User struct {
+		FirstName string 
+		LastName string
+		Email string
+		Age int
+	}
+
+	var users []User 
+	users = append(users, User{"John", "Smith", "john@smith.com", 30})
+	users = append(users, User{"Johan", "Navarro", "johan@navarro.com", 31})
+	users = append(users, User{"Caro", "Anduquia", "caro@anduquia.com", 28})
+	for _, l:= range users {
+		log.Println(l.FirstName, l.LastName, l.Email, l.Age)
+	}
+
+	
 }
