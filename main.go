@@ -6,9 +6,24 @@ import (
 	"github.com/jsnavarroc/golangTraining/helpers"
 )
 
-func main(){
-	log.Println("Hello")
-	var myVar helpers.SomeType
-	myVar.TypeName = "Some Name"
-	log.Println(myVar.TypeName)
+const numPool = 1000 
+
+func CalculateValue(intChan chan<- int) {	
+	randomNumer := helpers.RandomNumer(numPool)
+	intChan <- randomNumer	
 }
+
+func logRadomValurChan(intChan <-chan int) {
+	num := <-intChan
+	log.Println(num)
+}
+
+func main(){
+	intChan := make(chan int)
+	defer close(intChan)
+
+	go CalculateValue(intChan)
+	logRadomValurChan(intChan)
+	
+}
+
