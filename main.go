@@ -1,68 +1,30 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
+	"errors"
 	"log"
 )
 
-type Person struct {
-	FirsName string `json:"first_name"`
-	LastName string `json:"last_name"`
-	HairColor string `json:"hair_color"`
-	HasDog bool `json:"has_dog"`
-}
-
 func main(){
-	myJson:= `
-	[
-		{
-			"first_name": "Clarck",
-			"last_name": "Kent",
-			"hair_color": "black",
-			"has_dog": true
-		},
-		{
-			"first_name": "Bruce",
-			"last_name": "Wayne",
-			"hair_color": "black",
-			"has_dog": false
-		}
-	]
-	`
-	var unmarshalled []Person
-	err := json.Unmarshal([]byte(myJson), &unmarshalled)
-
+	result, err := divide(100.0, 0)
 	if err != nil {
-		log.Println("Error unmarshalling json", err)
-	} 
+		log.Println(err)
+		return 
+	}
+	log.Println("result of division is", result)
 
-	log.Println("unmarshalled: %v", unmarshalled)
-
-
-	//write json from a struct
-	var mySlice []Person
-	var m1 Person 
-	m1.FirsName = "Wally"
-	m1.LastName = "West"
-	m1.HairColor = "red"
-	m1.HasDog = false
-
-	mySlice = append(mySlice, m1)
-
-	var m2 Person 
-	m2.FirsName = "Diana"
-	m2.LastName = "Prince"
-	m2.HairColor = "black"
-	m2.HasDog = false
-
-	mySlice = append(mySlice, m2)
-
-	newJson, err :=json.MarshalIndent(mySlice, "", "   ")
-	if err != nil {
-		log.Println("Error marshalling json", err)
-	} 
-
-	fmt.Println(string(newJson))
 }
 
+func divide(x, y float32)(float32, error) {
+	var result float32
+	
+	if(y == 0){
+		return result, errors.New("cannot divide by 0")
+	}
+
+
+	
+	result = x / y
+	return result, nil
+
+}
